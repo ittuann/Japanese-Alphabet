@@ -297,14 +297,18 @@
                     // 生成单元格
                     rowData.chars.forEach(charData => {
                         if (charData) {
+                            const isSpecial = ['shi', 'chi', 'tsu', 'fu', 'ji', 'zu'].includes(charData.r);
+
                             tbodyHtml += `
                                 <td class="h-full">
-                                    <div class="bg-white border border-slate-200 rounded-md shadow-sm hover:border-indigo-300 transition-colors p-1.5 flex flex-col items-center justify-center min-w-[50px] sm:min-w-[60px] h-full">
+                                    <div class="bg-white border border-slate-200 rounded-md shadow-sm hover:border-indigo-300 transition-colors p-1.5 flex flex-col items-center justify-center min-w-[50px] sm:min-w-[60px] h-full relative">
                                         <div class="flex w-full justify-center gap-1.5 mb-0.5">
                                             <span class="text-base sm:text-xl font-medium text-blue-600 font-japanese">${charData.h}</span>
                                             <span class="text-base sm:text-xl font-medium text-red-600 font-japanese">${charData.k}</span>
                                         </div>
-                                        <div class="text-[9px] sm:text-[10px] text-slate-500 font-mono tracking-widest bg-slate-50 px-1 py-0 rounded">${charData.r}</div>
+                                        <div class="text-[9px] sm:text-[10px] text-slate-500 font-mono tracking-widest bg-slate-50 border border-transparent px-1 py-0 rounded transition-colors">
+                                            ${charData.r}${isSpecial ? '<sup class="text-amber-500 font-bold" title="特殊发音">*</sup>' : ''}
+                                        </div>
                                     </div>
                                 </td>
                             `;
@@ -348,6 +352,8 @@
                                 s === wordData.tr ? `<span class="text-green-600 font-bold">${s}</span>` : s
                             ).join(' ');
 
+                            const isSpecialTr = ['shi', 'chi', 'tsu', 'fu', 'ji', 'zu'].includes(wordData.tr);
+
                             tbodyHtml += `
                                 <td class="h-full">
                                     <div class="bg-white border border-slate-200 rounded-md shadow-sm hover:border-green-300 transition-colors p-1.5 sm:p-2 flex flex-col items-center justify-between min-w-[80px] sm:min-w-[95px] h-full relative">
@@ -359,7 +365,9 @@
                                             <div class="text-[9px] sm:text-[10px] text-slate-500 text-center leading-tight whitespace-nowrap">${wordData.m}</div>
                                         </div>
 
-                                        <div class="text-[8px] sm:text-[9px] text-slate-500 font-mono bg-slate-50 px-1 py-0 rounded border border-slate-100 mt-auto">${wordData.tr}</div>
+                                        <div class="text-[8px] sm:text-[9px] text-slate-500 font-mono bg-slate-50 px-1 py-0 rounded border border-slate-100 transition-colors mt-auto">
+                                            ${wordData.tr}${isSpecialTr ? '<sup class="text-amber-500 font-bold" title="特殊发音">*</sup>' : ''}
+                                        </div>
                                     </div>
                                 </td>
                             `;
