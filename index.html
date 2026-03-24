@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日语五十音图 - Gojūon Table</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Noto Sans JP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        japanese: ['"Noto Sans JP"', 'sans-serif'],
+                        mono: ['"Fira Code"', '"Courier New"', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f8fafc; /* Tailwind slate-50 */
+        }
+        /* 隐藏空单元格的边框和背景 */
+        .empty-cell {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body class="min-h-screen py-10 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+
+    <!-- 标题与说明区域 -->
+    <div class="max-w-4xl w-full mb-8 text-center">
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4 font-japanese">日语五十音图</h1>
+        <p class="text-slate-500 mb-6">Gojūon Table</p>
+
+        <div class="flex items-center justify-center gap-6 text-sm md:text-base text-slate-600 bg-white inline-flex px-6 py-3 rounded-full shadow-sm border border-slate-100">
+            <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+                <span>平假名 (Hiragana)</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                <span>片假名 (Katakana)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 表格容器，移动端支持横向滚动 -->
+    <div class="max-w-5xl w-full overflow-x-auto pb-8">
+        <table class="w-full border-separate" style="border-spacing: 0.5rem;">
+            <thead id="table-head">
+                <!-- JS动态生成表头 -->
+            </thead>
+            <tbody id="table-body">
+                <!-- JS动态生成表格内容 -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 浊音与半浊音 -->
+    <div class="max-w-4xl w-full mt-12 mb-6 text-center">
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-800 font-japanese">浊音・半浊音</h2>
+        <p class="text-slate-500">Dakuon & Handakuon</p>
+    </div>
+    <div class="max-w-5xl w-full overflow-x-auto pb-8">
+        <table class="w-full border-separate" style="border-spacing: 0.5rem;">
+            <thead id="dakuon-table-head"></thead>
+            <tbody id="dakuon-table-body"></tbody>
+        </table>
+    </div>
+
+    <!-- 拗音 -->
+    <div class="max-w-4xl w-full mt-12 mb-6 text-center">
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-800 font-japanese">拗音</h2>
+        <p class="text-slate-500">Yōon</p>
+    </div>
+    <div class="max-w-5xl w-full overflow-x-auto pb-8">
+        <table class="w-full border-separate" style="border-spacing: 0.5rem;">
+            <thead id="yoon-table-head"></thead>
+            <tbody id="yoon-table-body"></tbody>
+        </table>
+    </div>
+
+    <!-- 五十音词汇助记 -->
+    <div class="max-w-4xl w-full mt-12 mb-6 text-center">
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-800 font-japanese">五十音词汇助记</h2>
+        <p class="text-slate-500">Gojūon Vocabulary for Memory</p>
+    </div>
+    <div class="max-w-5xl w-full overflow-x-auto pb-8">
+        <table class="w-full border-separate" style="border-spacing: 0.5rem;">
+            <thead id="vocab-table-head"></thead>
+            <tbody id="vocab-table-body"></tbody>
+        </table>
+    </div>
+
+    <!-- 浊音・半浊音词汇助记 -->
+    <div class="max-w-4xl w-full mt-12 mb-6 text-center">
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-800 font-japanese">浊音・半浊音词汇助记</h2>
+        <p class="text-slate-500">Dakuon & Handakuon Vocabulary</p>
+    </div>
+    <div class="max-w-5xl w-full overflow-x-auto pb-8">
+        <table class="w-full border-separate" style="border-spacing: 0.5rem;">
+            <thead id="dakuon-vocab-table-head"></thead>
+            <tbody id="dakuon-vocab-table-body"></tbody>
+        </table>
+    </div>
+
+    <!-- 拗音词汇助记 -->
+    <div class="max-w-4xl w-full mt-12 mb-6 text-center">
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-800 font-japanese">拗音词汇助记</h2>
+        <p class="text-slate-500">Yōon Vocabulary</p>
+    </div>
+    <div class="max-w-5xl w-full overflow-x-auto pb-12">
+        <table class="w-full border-separate" style="border-spacing: 0.5rem;">
+            <thead id="yoon-vocab-table-head"></thead>
+            <tbody id="yoon-vocab-table-body"></tbody>
+        </table>
+    </div>
+
+    <!-- 页面底部 -->
+    <footer class="mt-auto text-center text-slate-400 text-sm">
+        <p>五十音图</p>
+    </footer>
+
+    <script>
+        // 定义五十音数据
+        const vowels = ['a', 'i', 'u', 'e', 'o'];
+        const gojuonData = [
+            { rowHeader: '', chars: [
+                { h: 'あ', k: 'ア', r: 'a' }, { h: 'い', k: 'イ', r: 'i' }, { h: 'う', k: 'ウ', r: 'u' }, { h: 'え', k: 'エ', r: 'e' }, { h: 'お', k: 'オ', r: 'o' }
+            ]},
+            { rowHeader: 'k', chars: [
+                { h: 'か', k: 'カ', r: 'ka' }, { h: 'き', k: 'キ', r: 'ki' }, { h: 'く', k: 'ク', r: 'ku' }, { h: 'け', k: 'ケ', r: 'ke' }, { h: 'こ', k: 'コ', r: 'ko' }
+            ]},
+            { rowHeader: 's', chars: [
+                { h: 'さ', k: 'サ', r: 'sa' }, { h: 'し', k: 'シ', r: 'shi' }, { h: 'す', k: 'ス', r: 'su' }, { h: 'せ', k: 'セ', r: 'se' }, { h: 'そ', k: 'ソ', r: 'so' }
+            ]},
+            { rowHeader: 't', chars: [
+                { h: 'た', k: 'タ', r: 'ta' }, { h: 'ち', k: 'チ', r: 'chi' }, { h: 'つ', k: 'ツ', r: 'tsu' }, { h: 'て', k: 'テ', r: 'te' }, { h: 'と', k: 'ト', r: 'to' }
+            ]},
+            { rowHeader: 'n', chars: [
+                { h: 'な', k: 'ナ', r: 'na' }, { h: 'に', k: 'ニ', r: 'ni' }, { h: 'ぬ', k: 'ヌ', r: 'nu' }, { h: 'ね', k: 'ネ', r: 'ne' }, { h: 'の', k: 'ノ', r: 'no' }
+            ]},
+            { rowHeader: 'h', chars: [
+                { h: 'は', k: 'ハ', r: 'ha' }, { h: 'ひ', k: 'ヒ', r: 'hi' }, { h: 'ふ', k: 'フ', r: 'fu' }, { h: 'へ', k: 'ヘ', r: 'he' }, { h: 'ほ', k: 'ホ', r: 'ho' }
+            ]},
+            { rowHeader: 'm', chars: [
+                { h: 'ま', k: 'マ', r: 'ma' }, { h: 'み', k: 'ミ', r: 'mi' }, { h: 'む', k: 'ム', r: 'mu' }, { h: 'め', k: 'メ', r: 'me' }, { h: 'も', k: 'モ', r: 'mo' }
+            ]},
+            { rowHeader: 'y', chars: [
+                { h: 'や', k: 'ヤ', r: 'ya' }, null, { h: 'ゆ', k: 'ユ', r: 'yu' }, null, { h: 'よ', k: 'ヨ', r: 'yo' }
+            ]},
+            { rowHeader: 'r', chars: [
+                { h: 'ら', k: 'ラ', r: 'ra' }, { h: 'り', k: 'リ', r: 'ri' }, { h: 'る', k: 'ル', r: 'ru' }, { h: 'れ', k: 'レ', r: 're' }, { h: 'ろ', k: 'ロ', r: 'ro' }
+            ]},
+            { rowHeader: 'w', chars: [
+                { h: 'わ', k: 'ワ', r: 'wa' }, null, null, null, { h: 'を', k: 'ヲ', r: 'wo' }
+            ]},
+            { rowHeader: '', chars: [
+                { h: 'ん', k: 'ン', r: 'n' }, null, null, null, null
+            ]}
+        ];
+
+        // 浊音・半浊音数据
+        const dakuonData = [
+            { rowHeader: 'g', chars: [
+                { h: 'が', k: 'ガ', r: 'ga' }, { h: 'ぎ', k: 'ギ', r: 'gi' }, { h: 'ぐ', k: 'グ', r: 'gu' }, { h: 'げ', k: 'ゲ', r: 'ge' }, { h: 'ご', k: 'ゴ', r: 'go' }
+            ]},
+            { rowHeader: 'z', chars: [
+                { h: 'ざ', k: 'ザ', r: 'za' }, { h: 'じ', k: 'ジ', r: 'ji' }, { h: 'ず', k: 'ズ', r: 'zu' }, { h: 'ぜ', k: 'ゼ', r: 'ze' }, { h: 'ぞ', k: 'ゾ', r: 'zo' }
+            ]},
+            { rowHeader: 'd', chars: [
+                { h: 'だ', k: 'ダ', r: 'da' }, { h: 'ぢ', k: 'ヂ', r: 'ji' }, { h: 'づ', k: 'ヅ', r: 'zu' }, { h: 'で', k: 'デ', r: 'de' }, { h: 'ど', k: 'ド', r: 'do' }
+            ]},
+            { rowHeader: 'b', chars: [
+                { h: 'ば', k: 'バ', r: 'ba' }, { h: 'び', k: 'ビ', r: 'bi' }, { h: 'ぶ', k: 'ブ', r: 'bu' }, { h: 'べ', k: 'ベ', r: 'be' }, { h: 'ぼ', k: 'ボ', r: 'bo' }
+            ]},
+            { rowHeader: 'p', chars: [
+                { h: 'ぱ', k: 'パ', r: 'pa' }, { h: 'ぴ', k: 'ピ', r: 'pi' }, { h: 'ぷ', k: 'プ', r: 'pu' }, { h: 'ぺ', k: 'ペ', r: 'pe' }, { h: 'ぽ', k: 'ポ', r: 'po' }
+            ]}
+        ];
+
+        // 拗音元音及数据
+        const yoonVowels = ['ya', 'yu', 'yo'];
+        const yoonData = [
+            { rowHeader: 'k', chars: [
+                { h: 'きゃ', k: 'キャ', r: 'kya' }, { h: 'きゅ', k: 'キュ', r: 'kyu' }, { h: 'きょ', k: 'キョ', r: 'kyo' }
+            ]},
+            { rowHeader: 's', chars: [
+                { h: 'しゃ', k: 'シャ', r: 'sha' }, { h: 'しゅ', k: 'シュ', r: 'shu' }, { h: 'しょ', k: 'ショ', r: 'sho' }
+            ]},
+            { rowHeader: 't', chars: [
+                { h: 'ちゃ', k: 'チャ', r: 'cha' }, { h: 'ちゅ', k: 'チュ', r: 'chu' }, { h: 'ちょ', k: 'チョ', r: 'cho' }
+            ]},
+            { rowHeader: 'n', chars: [
+                { h: 'にゃ', k: 'ニャ', r: 'nya' }, { h: 'にゅ', k: 'ニュ', r: 'nyu' }, { h: 'にょ', k: 'ニョ', r: 'nyo' }
+            ]},
+            { rowHeader: 'h', chars: [
+                { h: 'ひゃ', k: 'ヒャ', r: 'hya' }, { h: 'ひゅ', k: 'ヒュ', r: 'hyu' }, { h: 'ひょ', k: 'ヒョ', r: 'hyo' }
+            ]},
+            { rowHeader: 'm', chars: [
+                { h: 'みゃ', k: 'ミャ', r: 'mya' }, { h: 'みゅ', k: 'ミュ', r: 'myu' }, { h: 'みょ', k: 'ミョ', r: 'myo' }
+            ]},
+            { rowHeader: 'r', chars: [
+                { h: 'りゃ', k: 'リャ', r: 'rya' }, { h: 'りゅ', k: 'リュ', r: 'ryu' }, { h: 'りょ', k: 'リョ', r: 'ryo' }
+            ]},
+            { rowHeader: 'g', chars: [
+                { h: 'ぎゃ', k: 'ギャ', r: 'gya' }, { h: 'ぎゅ', k: 'ギュ', r: 'gyu' }, { h: 'ぎょ', k: 'ギョ', r: 'gyo' }
+            ]},
+            { rowHeader: 'j', chars: [
+                { h: 'じゃ', k: 'ジャ', r: 'ja' }, { h: 'じゅ', k: 'ジュ', r: 'ju' }, { h: 'じょ', k: 'ジョ', r: 'jo' }
+            ]},
+            { rowHeader: 'b', chars: [
+                { h: 'びゃ', k: 'ビャ', r: 'bya' }, { h: 'びゅ', k: 'ビュ', r: 'byu' }, { h: 'びょ', k: 'ビョ', r: 'byo' }
+            ]},
+            { rowHeader: 'p', chars: [
+                { h: 'ぴゃ', k: 'ピャ', r: 'pya' }, { h: 'ぴゅ', k: 'ピュ', r: 'pyu' }, { h: 'ぴょ', k: 'ピョ', r: 'pyo' }
+            ]}
+        ];
+
+        // 全假名覆盖词汇记忆数据
+        const allKanaVocabData = [
+            { rowHeader: '', words: [
+                { k: 'あ', w: 'あさ', r: 'a sa', m: '朝 (早上)', tr: 'a' }, { k: 'い', w: 'いぬ', r: 'i nu', m: '犬 (狗)', tr: 'i' }, { k: 'う', w: 'うみ', r: 'u mi', m: '海 (海)', tr: 'u' }, { k: 'え', w: 'えき', r: 'e ki', m: '駅 (车站)', tr: 'e' }, { k: 'お', w: 'おにぎり', r: 'o ni gi ri', m: 'おにぎり (饭团)', tr: 'o' }
+            ]},
+            { rowHeader: 'k', words: [
+                { k: 'か', w: 'かさ', r: 'ka sa', m: '傘 (伞)', tr: 'ka' }, { k: 'き', w: 'きのこ', r: 'ki no ko', m: 'きのこ (蘑菇)', tr: 'ki' }, { k: 'く', w: 'くつ', r: 'ku tsu', m: '靴 (鞋子)', tr: 'ku' }, { k: 'け', w: 'けいさつ', r: 'ke i sa tsu', m: '警察 (警察)', tr: 'ke' }, { k: 'こ', w: 'こども', r: 'ko do mo', m: '子供 (孩子)', tr: 'ko' }
+            ]},
+            { rowHeader: 's', words: [
+                { k: 'さ', w: 'さくら', r: 'sa ku ra', m: '桜 (樱花)', tr: 'sa' }, { k: 'し', w: 'しお', r: 'shi o', m: '塩 (盐)', tr: 'shi' }, { k: 'す', w: 'すごい', r: 'su go i', m: '凄い (厉害)', tr: 'su' }, { k: 'せ', w: 'せんせい', r: 'se n se i', m: '先生 (老师)', tr: 'se' }, { k: 'そ', w: 'そら', r: 'so ra', m: '空 (天空)', tr: 'so' }
+            ]},
+            { rowHeader: 't', words: [
+                { k: 'た', w: 'たべる', r: 'ta be ru', m: '食べる (吃)', tr: 'ta' }, { k: 'ち', w: 'ちび', r: 'chi bi', m: 'ちび (小不点)', tr: 'chi' }, { k: 'つ', w: 'つき', r: 'tsu ki', m: '月 (月亮)', tr: 'tsu' }, { k: 'て', w: 'てがみ', r: 'te ga mi', m: '手紙 (信)', tr: 'te' }, { k: 'と', w: 'とけい', r: 'to ke i', m: '時計 (钟表)', tr: 'to' }
+            ]},
+            { rowHeader: 'n', words: [
+                { k: 'な', w: 'なまえ', r: 'na ma e', m: '名前 (名字)', tr: 'na' }, { k: 'に', w: 'にく', r: 'ni ku', m: '肉 (肉)', tr: 'ni' }, { k: 'ぬ', w: 'ぬの', r: 'nu no', m: '布 (布)', tr: 'nu' }, { k: 'ね', w: 'ねこ', r: 'ne ko', m: '猫 (猫)', tr: 'ne' }, { k: 'の', w: 'のむ', r: 'no mu', m: '飲む (喝)', tr: 'no' }
+            ]},
+            { rowHeader: 'h', words: [
+                { k: 'は', w: 'はな', r: 'ha na', m: '花 (花)', tr: 'ha' }, { k: 'ひ', w: 'ひかり', r: 'hi ka ri', m: '光 (光)', tr: 'hi' }, { k: 'ふ', w: 'ふね', r: 'fu ne', m: '船 (船)', tr: 'fu' }, { k: 'へ', w: 'へや', r: 'he ya', m: '部屋 (房间)', tr: 'he' }, { k: 'ほ', w: 'ほし', r: 'ho shi', m: '星 (星星)', tr: 'ho' }
+            ]},
+            { rowHeader: 'm', words: [
+                { k: 'ま', w: 'まど', r: 'ma do', m: '窓 (窗户)', tr: 'ma' }, { k: 'み', w: 'みず', r: 'mi zu', m: '水 (水)', tr: 'mi' }, { k: 'む', w: 'むし', r: 'mu shi', m: '虫 (虫子)', tr: 'mu' }, { k: 'め', w: 'めがね', r: 'me ga ne', m: '眼鏡 (眼镜)', tr: 'me' }, { k: 'も', w: 'もも', r: 'mo mo', m: '桃 (桃子)', tr: 'mo' }
+            ]},
+            { rowHeader: 'y', words: [
+                { k: 'や', w: 'やま', r: 'ya ma', m: '山 (山)', tr: 'ya' }, null, { k: 'ゆ', w: 'ゆめ', r: 'yu me', m: '夢 (梦)', tr: 'yu' }, null, { k: 'よ', w: 'よる', r: 'yo ru', m: '夜 (夜晚)', tr: 'yo' }
+            ]},
+            { rowHeader: 'r', words: [
+                { k: 'ら', w: 'らいおん', r: 'ra i o n', m: 'ライオン (狮子)', tr: 'ra' }, { k: 'り', w: 'りんご', r: 'ri n go', m: '林檎 (苹果)', tr: 'ri' }, { k: 'る', w: 'くるま', r: 'ku ru ma', m: '車 (汽车)', tr: 'ru' }, { k: 'れ', w: 'れもん', r: 're mo n', m: 'レモン (柠檬)', tr: 're' }, { k: 'ろ', w: 'ろく', r: 'ro ku', m: '六 (数字六)', tr: 'ro' }
+            ]},
+            { rowHeader: 'w', words: [
+                { k: 'わ', w: 'わたし', r: 'wa ta shi', m: '私 (我)', tr: 'wa' }, null, null, null, { k: 'を', w: 'ほんをよむ', r: 'ho n wo yo mu', m: '本を読む (读书)', tr: 'wo' }
+            ]},
+            { rowHeader: '', words: [
+                { k: 'ん', w: 'ほん', r: 'ho n', m: '本 (书)', tr: 'n' }, null, null, null, null
+            ]}
+        ];
+
+        // 浊音・半浊音词汇记忆数据
+        const dakuonVocabData = [
+            { rowHeader: 'g', words: [
+                { k: 'が', w: 'がっこう', r: 'ga k ko u', m: '学校 (学校)', tr: 'ga' }, { k: 'ぎ', w: 'ぎんこう', r: 'gi n ko u', m: '銀行 (银行)', tr: 'gi' }, { k: 'ぐ', w: 'ぐあい', r: 'gu a i', m: '具合 (状况)', tr: 'gu' }, { k: 'げ', w: 'げんき', r: 'ge n ki', m: '元気 (精神)', tr: 'ge' }, { k: 'ご', w: 'ごはん', r: 'go ha n', m: 'ご飯 (米饭)', tr: 'go' }
+            ]},
+            { rowHeader: 'z', words: [
+                { k: 'ざ', w: 'ざっし', r: 'za s shi', m: '雑誌 (杂志)', tr: 'za' }, { k: 'じ', w: 'じかん', r: 'ji ka n', m: '時間 (时间)', tr: 'ji' }, { k: 'ず', w: 'ずっと', r: 'zu t to', m: 'ずっと (一直)', tr: 'zu' }, { k: 'ぜ', w: 'ぜんぶ', r: 'ze n bu', m: '全部 (全部)', tr: 'ze' }, { k: 'ぞ', w: 'ぞう', r: 'zo u', m: '象 (大象)', tr: 'zo' }
+            ]},
+            { rowHeader: 'd', words: [
+                { k: 'だ', w: 'だいがく', r: 'da i ga ku', m: '大学 (大学)', tr: 'da' }, { k: 'ぢ', w: 'ちぢむ', r: 'chi ji mu', m: '縮む (缩小)', tr: 'ji' }, { k: 'づ', w: 'つづく', r: 'tsu zu ku', m: '続く (继续)', tr: 'zu' }, { k: 'で', w: 'でんわ', r: 'de n wa', m: '電話 (电话)', tr: 'de' }, { k: 'ど', w: 'どうぶつ', r: 'do u bu tsu', m: '動物 (动物)', tr: 'do' }
+            ]},
+            { rowHeader: 'b', words: [
+                { k: 'ば', w: 'ばか', r: 'ba ka', m: '馬鹿 (笨蛋)', tr: 'ba' }, { k: 'び', w: 'びじゅつ', r: 'bi ju tsu', m: '美術 (美术)', tr: 'bi' }, { k: 'ぶ', w: 'ぶた', r: 'bu ta', m: '豚 (猪)', tr: 'bu' }, { k: 'べ', w: 'べんきょう', r: 'be n kyo u', m: '勉強 (学习)', tr: 'be' }, { k: 'ぼ', w: 'ぼうし', r: 'bo u shi', m: '帽子 (帽子)', tr: 'bo' }
+            ]},
+            { rowHeader: 'p', words: [
+                { k: 'ぱ', w: 'ぱん', r: 'pa n', m: 'パン (面包)', tr: 'pa' }, { k: 'ぴ', w: 'ぴかぴか', r: 'pi ka pi ka', m: 'ぴかぴか (闪亮)', tr: 'pi' }, { k: 'ぷ', w: 'ぷれぜんと', r: 'pu re ze n to', m: 'プレゼント (礼物)', tr: 'pu' }, { k: 'ぺ', w: 'ぺん', r: 'pe n', m: 'ペン (笔)', tr: 'pe' }, { k: 'ぽ', w: 'ぽけっと', r: 'po ke t to', m: 'ポケット (口袋)', tr: 'po' }
+            ]}
+        ];
+
+        // 拗音词汇记忆数据
+        const yoonVocabData = [
+            { rowHeader: 'k', words: [
+                { k: 'きゃ', w: 'きゃく', r: 'kya ku', m: '客 (客人)', tr: 'kya' }, { k: 'きゅ', w: 'きゅうり', r: 'kyu u ri', m: '胡瓜 (黄瓜)', tr: 'kyu' }, { k: 'きょ', w: 'きょう', r: 'kyo u', m: '今日 (今天)', tr: 'kyo' }
+            ]},
+            { rowHeader: 's', words: [
+                { k: 'しゃ', w: 'しゃしん', r: 'sha shi n', m: '写真 (照片)', tr: 'sha' }, { k: 'しゅ', w: 'しゅくだい', r: 'shu ku da i', m: '宿題 (作业)', tr: 'shu' }, { k: 'しょ', w: 'しょくどう', r: 'sho ku do u', m: '食堂 (食堂)', tr: 'sho' }
+            ]},
+            { rowHeader: 't', words: [
+                { k: 'ちゃ', w: 'おちゃ', r: 'o cha', m: 'お茶 (茶)', tr: 'cha' }, { k: 'ちゅ', w: 'ちゅうごく', r: 'chu u go ku', m: '中国 (中国)', tr: 'chu' }, { k: 'ちょ', w: 'ちょきん', r: 'cho ki n', m: '貯金 (存钱)', tr: 'cho' }
+            ]},
+            { rowHeader: 'n', words: [
+                { k: 'にゃ', w: 'にゃんこ', r: 'nya n ko', m: 'にゃんこ (猫咪)', tr: 'nya' }, { k: 'にゅ', w: 'ぎゅうにゅう', r: 'gyu u nyu u', m: '牛乳 (牛奶)', tr: 'nyu' }, { k: 'にょ', w: 'にょろにょろ', r: 'nyo ro nyo ro', m: 'にょろにょろ (弯曲貌)', tr: 'nyo' }
+            ]},
+            { rowHeader: 'h', words: [
+                { k: 'ひゃ', w: 'ひゃく', r: 'hya ku', m: '百 (一百)', tr: 'hya' }, { k: 'ひゅ', w: 'ひゅーひゅー', r: 'hyu u hyu u', m: 'ひゅーひゅー (呼呼声)', tr: 'hyu' }, { k: 'ひょ', w: 'ひょう', r: 'hyo u', m: '豹 (豹)', tr: 'hyo' }
+            ]},
+            { rowHeader: 'm', words: [
+                { k: 'みゃ', w: 'みゃく', r: 'mya ku', m: '脈 (脉搏)', tr: 'mya' }, { k: 'みゅ', w: 'みゅーじっく', r: 'myu u ji k ku', m: 'ミュージック (音乐)', tr: 'myu' }, { k: 'みょ', w: 'みょうじ', r: 'myo u ji', m: '名字 (姓氏)', tr: 'myo' }
+            ]},
+            { rowHeader: 'r', words: [
+                { k: 'りゃ', w: 'りゃく', r: 'rya ku', m: '略 (省略)', tr: 'rya' }, { k: 'りゅ', w: 'りゅう', r: 'ryu u', m: '竜 (龙)', tr: 'ryu' }, { k: 'りょ', w: 'りょこう', r: 'ryo ko u', m: '旅行 (旅行)', tr: 'ryo' }
+            ]},
+            { rowHeader: 'g', words: [
+                { k: 'ぎゃ', w: 'ぎゃく', r: 'gya ku', m: '逆 (相反)', tr: 'gya' }, { k: 'ぎゅ', w: 'ぎゅうにく', r: 'gyu u ni ku', m: '牛肉 (牛肉)', tr: 'gyu' }, { k: 'ぎょ', w: 'きんぎょ', r: 'ki n gyo', m: '金魚 (金鱼)', tr: 'gyo' }
+            ]},
+            { rowHeader: 'j', words: [
+                { k: 'じゃ', w: 'じゃま', r: 'ja ma', m: '邪魔 (打扰)', tr: 'ja' }, { k: 'じゅ', w: 'じゅぎょう', r: 'ju gyo u', m: '授業 (课)', tr: 'ju' }, { k: 'じょ', w: 'じょせい', r: 'jo se i', m: '女性 (女性)', tr: 'jo' }
+            ]},
+            { rowHeader: 'b', words: [
+                { k: 'びゃ', w: 'さんびゃく', r: 'sa n bya ku', m: '三百 (三百)', tr: 'bya' }, { k: 'びゅ', w: 'びゅんびゅん', r: 'byu n byu n', m: 'びゅんびゅん (嗖嗖声)', tr: 'byu' }, { k: 'びょ', w: 'びょういん', r: 'byo u i n', m: '病院 (医院)', tr: 'byo' }
+            ]},
+            { rowHeader: 'p', words: [
+                { k: 'ぴゃ', w: 'ろっぴゃく', r: 'ro p pya ku', m: '六百 (六百)', tr: 'pya' }, { k: 'ぴゅ', w: 'こんぴゅーた', r: 'ko n pyu u ta', m: 'コンピュータ (电脑)', tr: 'pyu' }, { k: 'ぴょ', w: 'はっぴょう', r: 'ha p pyo u', m: '発表 (发表)', tr: 'pyo' }
+            ]}
+        ];
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // 封装一个渲染表格的函数
+            function renderTable(headId, bodyId, headerVowels, data) {
+                const tableHead = document.getElementById(headId);
+                const tableBody = document.getElementById(bodyId);
+
+                // 生成表头 (Thead)
+                let theadHtml = '<tr><th class="w-8 sm:w-12"></th>';
+                headerVowels.forEach(v => {
+                    theadHtml += `<th class="p-2 text-center text-slate-400 font-mono text-lg sm:text-xl font-medium">${v}</th>`;
+                });
+                theadHtml += '</tr>';
+                tableHead.innerHTML = theadHtml;
+
+                // 生成表格主体 (Tbody)
+                let tbodyHtml = '';
+                data.forEach(rowData => {
+                    tbodyHtml += `<tr>`;
+
+                    // 行侧边表头
+                    tbodyHtml += `<th class="p-2 text-center text-slate-400 font-mono text-lg sm:text-xl font-medium align-middle">${rowData.rowHeader}</th>`;
+
+                    // 生成单元格
+                    rowData.chars.forEach(charData => {
+                        if (charData) {
+                            tbodyHtml += `
+                                <td class="h-full">
+                                    <div class="bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md hover:border-indigo-300 hover:-translate-y-0.5 transition-all duration-200 p-2 sm:p-4 flex flex-col items-center justify-center min-w-[70px] sm:min-w-[90px] cursor-default h-full">
+                                        <div class="flex w-full justify-center gap-2 sm:gap-4 mb-2 sm:mb-3">
+                                            <span class="text-xl sm:text-3xl font-medium text-blue-600 font-japanese">${charData.h}</span>
+                                            <span class="text-xl sm:text-3xl font-medium text-red-600 font-japanese">${charData.k}</span>
+                                        </div>
+                                        <div class="text-xs sm:text-sm text-slate-500 font-mono tracking-widest bg-slate-50 px-2 py-0.5 rounded">${charData.r}</div>
+                                    </div>
+                                </td>
+                            `;
+                        } else {
+                            // 空白单元格
+                            tbodyHtml += `<td class="empty-cell"></td>`;
+                        }
+                    });
+
+                    tbodyHtml += `</tr>`;
+                });
+                tableBody.innerHTML = tbodyHtml;
+            }
+
+            // 渲染清音 (五十音)
+            renderTable('table-head', 'table-body', vowels, gojuonData);
+
+            // 渲染浊音・半浊音
+            renderTable('dakuon-table-head', 'dakuon-table-body', vowels, dakuonData);
+
+            // 渲染拗音
+            renderTable('yoon-table-head', 'yoon-table-body', yoonVowels, yoonData);
+
+            // 渲染全新的词汇记忆表格 (通用函数)
+            function renderVocabTable(headId, bodyId, headerVowels, data) {
+                const head = document.getElementById(headId);
+                const body = document.getElementById(bodyId);
+
+                // 表头
+                let theadHtml = '<tr><th class="w-8 sm:w-12"></th>';
+                headerVowels.forEach(v => {
+                    theadHtml += `<th class="p-2 text-center text-slate-400 font-mono text-lg sm:text-xl font-medium">${v}</th>`;
+                });
+                theadHtml += '</tr>';
+                head.innerHTML = theadHtml;
+
+                // 表体
+                let tbodyHtml = '';
+                data.forEach(rowData => {
+                    tbodyHtml += `<tr>`;
+                    tbodyHtml += `<th class="p-2 text-center text-slate-400 font-mono text-lg sm:text-xl font-medium align-middle">${rowData.rowHeader}</th>`;
+
+                    rowData.words.forEach(wordData => {
+                        if (wordData) {
+                            // 高亮假名和对应的罗马音
+                            const highlightedW = wordData.w.split(wordData.k).join(`<span class="text-green-600 font-bold">${wordData.k}</span>`);
+                            const highlightedR = wordData.r.split(' ').map(s =>
+                                s === wordData.tr ? `<span class="text-green-600 font-bold">${s}</span>` : s
+                            ).join(' ');
+
+                            tbodyHtml += `
+                                <td class="h-full">
+                                    <div class="bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md hover:border-green-300 hover:-translate-y-0.5 transition-all duration-200 p-2 sm:p-3 flex flex-col items-center justify-between min-w-[90px] sm:min-w-[120px] cursor-default h-full relative">
+                                        <span class="absolute top-2 left-2 text-[10px] sm:text-xs font-bold text-green-600 bg-green-50 px-1.5 py-0.5 rounded">${wordData.k}</span>
+
+                                        <div class="flex flex-col items-center mt-3 mb-2">
+                                            <div class="text-[10px] sm:text-xs text-slate-400 font-mono tracking-widest mb-0.5">${highlightedR}</div>
+                                            <div class="text-lg sm:text-xl font-medium text-slate-800 font-japanese mb-1">${highlightedW}</div>
+                                            <div class="text-xs text-slate-500 text-center leading-tight whitespace-nowrap">${wordData.m}</div>
+                                        </div>
+
+                                        <div class="text-xs sm:text-sm text-slate-500 font-mono tracking-widest bg-slate-50 px-2 py-0.5 rounded border border-slate-100 mt-auto">${wordData.tr}</div>
+                                    </div>
+                                </td>
+                            `;
+                        } else {
+                            tbodyHtml += `<td class="empty-cell"></td>`;
+                        }
+                    });
+                    tbodyHtml += `</tr>`;
+                });
+                body.innerHTML = tbodyHtml;
+            }
+
+            // 执行渲染
+            renderVocabTable('vocab-table-head', 'vocab-table-body', vowels, allKanaVocabData);
+            renderVocabTable('dakuon-vocab-table-head', 'dakuon-vocab-table-body', vowels, dakuonVocabData);
+            renderVocabTable('yoon-vocab-table-head', 'yoon-vocab-table-body', yoonVowels, yoonVocabData);
+        });
+    </script>
+</body>
+</html>
