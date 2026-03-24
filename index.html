@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,107 +26,115 @@
     </script>
     <style>
         body {
-            background-color: #f8fafc; /* Tailwind slate-50 */
+            background-color: #f8fafc;
+            /* Tailwind slate-50 */
         }
+
         /* 隐藏空单元格的边框和背景 */
         .empty-cell {
             visibility: hidden;
         }
+
+        /* 表格间距紧凑 */
+        .compact-table {
+            border-spacing: 3px;
+        }
     </style>
 </head>
-<body class="min-h-screen py-10 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+
+<body class="min-h-screen py-4 px-2 sm:px-4 flex flex-col items-center">
 
     <!-- 标题与说明区域 -->
-    <div class="max-w-4xl w-full mb-8 text-center">
-        <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4 font-japanese">日语五十音图</h1>
-        <p class="text-slate-500 mb-6">Gojūon Table</p>
+    <div class="w-full mb-4 text-center">
+        <h1 class="text-2xl md:text-3xl font-bold text-slate-800 mb-1 font-japanese">日语五十音图</h1>
+        <p class="text-xs text-slate-500 mb-3">Gojūon Table</p>
 
-        <div class="flex items-center justify-center gap-6 text-sm md:text-base text-slate-600 bg-white inline-flex px-6 py-3 rounded-full shadow-sm border border-slate-100">
-            <div class="flex items-center gap-2">
-                <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+        <div
+            class="flex items-center justify-center gap-4 text-xs text-slate-600 bg-white inline-flex px-4 py-1.5 rounded-full shadow-sm border border-slate-200">
+            <div class="flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
                 <span>平假名 (Hiragana)</span>
             </div>
-            <div class="flex items-center gap-2">
-                <span class="w-3 h-3 rounded-full bg-red-500"></span>
+            <div class="flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
                 <span>片假名 (Katakana)</span>
             </div>
         </div>
     </div>
 
-    <!-- 表格容器，移动端支持横向滚动 -->
-    <div class="max-w-5xl w-full overflow-x-auto pb-8">
-        <table class="w-full border-separate" style="border-spacing: 0.5rem;">
-            <thead id="table-head">
-                <!-- JS动态生成表头 -->
-            </thead>
-            <tbody id="table-body">
-                <!-- JS动态生成表格内容 -->
-            </tbody>
+    <!-- 表格容器 -->
+    <div class="w-full flex justify-center overflow-x-auto pb-2 mb-4">
+        <table class="border-separate compact-table">
+            <thead id="table-head"></thead>
+            <tbody id="table-body"></tbody>
         </table>
     </div>
 
     <!-- 浊音与半浊音 -->
-    <div class="max-w-4xl w-full mt-12 mb-6 text-center">
-        <h2 class="text-2xl md:text-3xl font-bold text-slate-800 font-japanese">浊音・半浊音</h2>
-        <p class="text-slate-500">Dakuon & Handakuon</p>
+    <div class="w-full text-center mb-1">
+        <h2 class="text-lg md:text-xl font-bold text-slate-800 font-japanese">浊音・半浊音</h2>
+        <p class="text-[10px] text-slate-500">Dakuon & Handakuon</p>
     </div>
-    <div class="max-w-5xl w-full overflow-x-auto pb-8">
-        <table class="w-full border-separate" style="border-spacing: 0.5rem;">
+    <div class="w-full flex justify-center overflow-x-auto pb-2 mb-4">
+        <table class="border-separate compact-table">
             <thead id="dakuon-table-head"></thead>
             <tbody id="dakuon-table-body"></tbody>
         </table>
     </div>
 
     <!-- 拗音 -->
-    <div class="max-w-4xl w-full mt-12 mb-6 text-center">
-        <h2 class="text-2xl md:text-3xl font-bold text-slate-800 font-japanese">拗音</h2>
-        <p class="text-slate-500">Yōon</p>
+    <div class="w-full text-center mb-1">
+        <h2 class="text-lg md:text-xl font-bold text-slate-800 font-japanese">拗音</h2>
+        <p class="text-[10px] text-slate-500">Yōon</p>
     </div>
-    <div class="max-w-5xl w-full overflow-x-auto pb-8">
-        <table class="w-full border-separate" style="border-spacing: 0.5rem;">
+    <div class="w-full flex justify-center overflow-x-auto pb-2 mb-6">
+        <table class="border-separate compact-table">
             <thead id="yoon-table-head"></thead>
             <tbody id="yoon-table-body"></tbody>
         </table>
     </div>
 
-    <!-- 五十音词汇助记 -->
-    <div class="max-w-4xl w-full mt-12 mb-6 text-center">
-        <h2 class="text-2xl md:text-3xl font-bold text-slate-800 font-japanese">五十音词汇助记</h2>
-        <p class="text-slate-500">Gojūon Vocabulary for Memory</p>
+    <!-- 分隔线 -->
+    <div class="w-full max-w-5xl border-t border-slate-200 mb-6"></div>
+
+    <!-- 五十音词汇助 -->
+    <div class="w-full text-center mb-2">
+        <h2 class="text-xl md:text-2xl font-bold text-slate-800 font-japanese">五十音词汇助记</h2>
+        <p class="text-[10px] sm:text-xs text-slate-500">Vocabulary for Memory</p>
     </div>
-    <div class="max-w-5xl w-full overflow-x-auto pb-8">
-        <table class="w-full border-separate" style="border-spacing: 0.5rem;">
+    <div class="w-full flex justify-center overflow-x-auto pb-2 mb-6">
+        <table class="border-separate compact-table">
             <thead id="vocab-table-head"></thead>
             <tbody id="vocab-table-body"></tbody>
         </table>
     </div>
 
-    <!-- 浊音・半浊音词汇助记 -->
-    <div class="max-w-4xl w-full mt-12 mb-6 text-center">
-        <h2 class="text-2xl md:text-3xl font-bold text-slate-800 font-japanese">浊音・半浊音词汇助记</h2>
-        <p class="text-slate-500">Dakuon & Handakuon Vocabulary</p>
+    <!-- 浊音词汇 -->
+    <div class="w-full text-center mb-1">
+        <h2 class="text-lg md:text-xl font-bold text-slate-800 font-japanese">浊音・半浊音词汇</h2>
+        <p class="text-[10px] sm:text-xs text-slate-500">Dakuon & Handakuon Vocabulary</p>
     </div>
-    <div class="max-w-5xl w-full overflow-x-auto pb-8">
-        <table class="w-full border-separate" style="border-spacing: 0.5rem;">
+    <div class="w-full flex justify-center overflow-x-auto pb-2 mb-4">
+        <table class="border-separate compact-table">
             <thead id="dakuon-vocab-table-head"></thead>
             <tbody id="dakuon-vocab-table-body"></tbody>
         </table>
     </div>
 
-    <!-- 拗音词汇助记 -->
-    <div class="max-w-4xl w-full mt-12 mb-6 text-center">
-        <h2 class="text-2xl md:text-3xl font-bold text-slate-800 font-japanese">拗音词汇助记</h2>
-        <p class="text-slate-500">Yōon Vocabulary</p>
+    <!-- 拗音词汇 -->
+    <div class="w-full text-center mb-1">
+        <h2 class="text-lg md:text-xl font-bold text-slate-800 font-japanese">拗音词汇</h2>
+        <p class="text-[10px] sm:text-xs text-slate-500">Yōon Vocabulary</p>
     </div>
-    <div class="max-w-5xl w-full overflow-x-auto pb-12">
-        <table class="w-full border-separate" style="border-spacing: 0.5rem;">
+    <div class="w-full flex justify-center overflow-x-auto pb-2 mb-8">
+        <table class="border-separate compact-table">
             <thead id="yoon-vocab-table-head"></thead>
             <tbody id="yoon-vocab-table-body"></tbody>
         </table>
     </div>
 
     <!-- 页面底部 -->
-    <footer class="mt-auto text-center text-slate-400 text-sm">
+    <footer class="mt-auto text-center text-slate-400 text-xs py-2">
         <p>五十音图</p>
     </footer>
 
@@ -133,96 +142,42 @@
         // 定义五十音数据
         const vowels = ['a', 'i', 'u', 'e', 'o'];
         const gojuonData = [
-            { rowHeader: '', chars: [
-                { h: 'あ', k: 'ア', r: 'a' }, { h: 'い', k: 'イ', r: 'i' }, { h: 'う', k: 'ウ', r: 'u' }, { h: 'え', k: 'エ', r: 'e' }, { h: 'お', k: 'オ', r: 'o' }
-            ]},
-            { rowHeader: 'k', chars: [
-                { h: 'か', k: 'カ', r: 'ka' }, { h: 'き', k: 'キ', r: 'ki' }, { h: 'く', k: 'ク', r: 'ku' }, { h: 'け', k: 'ケ', r: 'ke' }, { h: 'こ', k: 'コ', r: 'ko' }
-            ]},
-            { rowHeader: 's', chars: [
-                { h: 'さ', k: 'サ', r: 'sa' }, { h: 'し', k: 'シ', r: 'shi' }, { h: 'す', k: 'ス', r: 'su' }, { h: 'せ', k: 'セ', r: 'se' }, { h: 'そ', k: 'ソ', r: 'so' }
-            ]},
-            { rowHeader: 't', chars: [
-                { h: 'た', k: 'タ', r: 'ta' }, { h: 'ち', k: 'チ', r: 'chi' }, { h: 'つ', k: 'ツ', r: 'tsu' }, { h: 'て', k: 'テ', r: 'te' }, { h: 'と', k: 'ト', r: 'to' }
-            ]},
-            { rowHeader: 'n', chars: [
-                { h: 'な', k: 'ナ', r: 'na' }, { h: 'に', k: 'ニ', r: 'ni' }, { h: 'ぬ', k: 'ヌ', r: 'nu' }, { h: 'ね', k: 'ネ', r: 'ne' }, { h: 'の', k: 'ノ', r: 'no' }
-            ]},
-            { rowHeader: 'h', chars: [
-                { h: 'は', k: 'ハ', r: 'ha' }, { h: 'ひ', k: 'ヒ', r: 'hi' }, { h: 'ふ', k: 'フ', r: 'fu' }, { h: 'へ', k: 'ヘ', r: 'he' }, { h: 'ほ', k: 'ホ', r: 'ho' }
-            ]},
-            { rowHeader: 'm', chars: [
-                { h: 'ま', k: 'マ', r: 'ma' }, { h: 'み', k: 'ミ', r: 'mi' }, { h: 'む', k: 'ム', r: 'mu' }, { h: 'め', k: 'メ', r: 'me' }, { h: 'も', k: 'モ', r: 'mo' }
-            ]},
-            { rowHeader: 'y', chars: [
-                { h: 'や', k: 'ヤ', r: 'ya' }, null, { h: 'ゆ', k: 'ユ', r: 'yu' }, null, { h: 'よ', k: 'ヨ', r: 'yo' }
-            ]},
-            { rowHeader: 'r', chars: [
-                { h: 'ら', k: 'ラ', r: 'ra' }, { h: 'り', k: 'リ', r: 'ri' }, { h: 'る', k: 'ル', r: 'ru' }, { h: 'れ', k: 'レ', r: 're' }, { h: 'ろ', k: 'ロ', r: 'ro' }
-            ]},
-            { rowHeader: 'w', chars: [
-                { h: 'わ', k: 'ワ', r: 'wa' }, null, null, null, { h: 'を', k: 'ヲ', r: 'wo' }
-            ]},
-            { rowHeader: '', chars: [
-                { h: 'ん', k: 'ン', r: 'n' }, null, null, null, null
-            ]}
+            { rowHeader: '', chars: [{ h: 'あ', k: 'ア', r: 'a' }, { h: 'い', k: 'イ', r: 'i' }, { h: 'う', k: 'ウ', r: 'u' }, { h: 'え', k: 'エ', r: 'e' }, { h: 'お', k: 'オ', r: 'o' }] },
+            { rowHeader: 'k', chars: [{ h: 'か', k: 'カ', r: 'ka' }, { h: 'き', k: 'キ', r: 'ki' }, { h: 'く', k: 'ク', r: 'ku' }, { h: 'け', k: 'ケ', r: 'ke' }, { h: 'こ', k: 'コ', r: 'ko' }] },
+            { rowHeader: 's', chars: [{ h: 'さ', k: 'サ', r: 'sa' }, { h: 'し', k: 'シ', r: 'shi' }, { h: 'す', k: 'ス', r: 'su' }, { h: 'せ', k: 'セ', r: 'se' }, { h: 'そ', k: 'ソ', r: 'so' }] },
+            { rowHeader: 't', chars: [{ h: 'た', k: 'タ', r: 'ta' }, { h: 'ち', k: 'チ', r: 'chi' }, { h: 'つ', k: 'ツ', r: 'tsu' }, { h: 'て', k: 'テ', r: 'te' }, { h: 'と', k: 'ト', r: 'to' }] },
+            { rowHeader: 'n', chars: [{ h: 'な', k: 'ナ', r: 'na' }, { h: 'に', k: 'ニ', r: 'ni' }, { h: 'ぬ', k: 'ヌ', r: 'nu' }, { h: 'ね', k: 'ネ', r: 'ne' }, { h: 'の', k: 'ノ', r: 'no' }] },
+            { rowHeader: 'h', chars: [{ h: 'は', k: 'ハ', r: 'ha' }, { h: 'ひ', k: 'ヒ', r: 'hi' }, { h: 'ふ', k: 'フ', r: 'fu' }, { h: 'へ', k: 'ヘ', r: 'he' }, { h: 'ほ', k: 'ホ', r: 'ho' }] },
+            { rowHeader: 'm', chars: [{ h: 'ま', k: 'マ', r: 'ma' }, { h: 'み', k: 'ミ', r: 'mi' }, { h: 'む', k: 'ム', r: 'mu' }, { h: 'め', k: 'メ', r: 'me' }, { h: 'も', k: 'モ', r: 'mo' }] },
+            { rowHeader: 'y', chars: [{ h: 'や', k: 'ヤ', r: 'ya' }, null, { h: 'ゆ', k: 'ユ', r: 'yu' }, null, { h: 'よ', k: 'ヨ', r: 'yo' }] },
+            { rowHeader: 'r', chars: [{ h: 'ら', k: 'ラ', r: 'ra' }, { h: 'り', k: 'リ', r: 'ri' }, { h: 'る', k: 'ル', r: 'ru' }, { h: 'れ', k: 'レ', r: 're' }, { h: 'ろ', k: 'ロ', r: 'ro' }] },
+            { rowHeader: 'w', chars: [{ h: 'わ', k: 'ワ', r: 'wa' }, null, null, null, { h: 'を', k: 'ヲ', r: 'wo' }] },
+            { rowHeader: '', chars: [{ h: 'ん', k: 'ン', r: 'n' }, null, null, null, null] }
         ];
 
         // 浊音・半浊音数据
         const dakuonData = [
-            { rowHeader: 'g', chars: [
-                { h: 'が', k: 'ガ', r: 'ga' }, { h: 'ぎ', k: 'ギ', r: 'gi' }, { h: 'ぐ', k: 'グ', r: 'gu' }, { h: 'げ', k: 'ゲ', r: 'ge' }, { h: 'ご', k: 'ゴ', r: 'go' }
-            ]},
-            { rowHeader: 'z', chars: [
-                { h: 'ざ', k: 'ザ', r: 'za' }, { h: 'じ', k: 'ジ', r: 'ji' }, { h: 'ず', k: 'ズ', r: 'zu' }, { h: 'ぜ', k: 'ゼ', r: 'ze' }, { h: 'ぞ', k: 'ゾ', r: 'zo' }
-            ]},
-            { rowHeader: 'd', chars: [
-                { h: 'だ', k: 'ダ', r: 'da' }, { h: 'ぢ', k: 'ヂ', r: 'ji' }, { h: 'づ', k: 'ヅ', r: 'zu' }, { h: 'で', k: 'デ', r: 'de' }, { h: 'ど', k: 'ド', r: 'do' }
-            ]},
-            { rowHeader: 'b', chars: [
-                { h: 'ば', k: 'バ', r: 'ba' }, { h: 'び', k: 'ビ', r: 'bi' }, { h: 'ぶ', k: 'ブ', r: 'bu' }, { h: 'べ', k: 'ベ', r: 'be' }, { h: 'ぼ', k: 'ボ', r: 'bo' }
-            ]},
-            { rowHeader: 'p', chars: [
-                { h: 'ぱ', k: 'パ', r: 'pa' }, { h: 'ぴ', k: 'ピ', r: 'pi' }, { h: 'ぷ', k: 'プ', r: 'pu' }, { h: 'ぺ', k: 'ペ', r: 'pe' }, { h: 'ぽ', k: 'ポ', r: 'po' }
-            ]}
+            { rowHeader: 'g', chars: [{ h: 'が', k: 'ガ', r: 'ga' }, { h: 'ぎ', k: 'ギ', r: 'gi' }, { h: 'ぐ', k: 'グ', r: 'gu' }, { h: 'げ', k: 'ゲ', r: 'ge' }, { h: 'ご', k: 'ゴ', r: 'go' }] },
+            { rowHeader: 'z', chars: [{ h: 'ざ', k: 'ザ', r: 'za' }, { h: 'じ', k: 'ジ', r: 'ji' }, { h: 'ず', k: 'ズ', r: 'zu' }, { h: 'ぜ', k: 'ゼ', r: 'ze' }, { h: 'ぞ', k: 'ゾ', r: 'zo' }] },
+            { rowHeader: 'd', chars: [{ h: 'だ', k: 'ダ', r: 'da' }, { h: 'ぢ', k: 'ヂ', r: 'ji' }, { h: 'づ', k: 'ヅ', r: 'zu' }, { h: 'で', k: 'デ', r: 'de' }, { h: 'ど', k: 'ド', r: 'do' }] },
+            { rowHeader: 'b', chars: [{ h: 'ば', k: 'バ', r: 'ba' }, { h: 'び', k: 'ビ', r: 'bi' }, { h: 'ぶ', k: 'ブ', r: 'bu' }, { h: 'べ', k: 'ベ', r: 'be' }, { h: 'ぼ', k: 'ボ', r: 'bo' }] },
+            { rowHeader: 'p', chars: [{ h: 'ぱ', k: 'パ', r: 'pa' }, { h: 'ぴ', k: 'ピ', r: 'pi' }, { h: 'ぷ', k: 'プ', r: 'pu' }, { h: 'ぺ', k: 'ペ', r: 'pe' }, { h: 'ぽ', k: 'ポ', r: 'po' }] }
         ];
 
         // 拗音元音及数据
         const yoonVowels = ['ya', 'yu', 'yo'];
         const yoonData = [
-            { rowHeader: 'k', chars: [
-                { h: 'きゃ', k: 'キャ', r: 'kya' }, { h: 'きゅ', k: 'キュ', r: 'kyu' }, { h: 'きょ', k: 'キョ', r: 'kyo' }
-            ]},
-            { rowHeader: 's', chars: [
-                { h: 'しゃ', k: 'シャ', r: 'sha' }, { h: 'しゅ', k: 'シュ', r: 'shu' }, { h: 'しょ', k: 'ショ', r: 'sho' }
-            ]},
-            { rowHeader: 't', chars: [
-                { h: 'ちゃ', k: 'チャ', r: 'cha' }, { h: 'ちゅ', k: 'チュ', r: 'chu' }, { h: 'ちょ', k: 'チョ', r: 'cho' }
-            ]},
-            { rowHeader: 'n', chars: [
-                { h: 'にゃ', k: 'ニャ', r: 'nya' }, { h: 'にゅ', k: 'ニュ', r: 'nyu' }, { h: 'にょ', k: 'ニョ', r: 'nyo' }
-            ]},
-            { rowHeader: 'h', chars: [
-                { h: 'ひゃ', k: 'ヒャ', r: 'hya' }, { h: 'ひゅ', k: 'ヒュ', r: 'hyu' }, { h: 'ひょ', k: 'ヒョ', r: 'hyo' }
-            ]},
-            { rowHeader: 'm', chars: [
-                { h: 'みゃ', k: 'ミャ', r: 'mya' }, { h: 'みゅ', k: 'ミュ', r: 'myu' }, { h: 'みょ', k: 'ミョ', r: 'myo' }
-            ]},
-            { rowHeader: 'r', chars: [
-                { h: 'りゃ', k: 'リャ', r: 'rya' }, { h: 'りゅ', k: 'リュ', r: 'ryu' }, { h: 'りょ', k: 'リョ', r: 'ryo' }
-            ]},
-            { rowHeader: 'g', chars: [
-                { h: 'ぎゃ', k: 'ギャ', r: 'gya' }, { h: 'ぎゅ', k: 'ギュ', r: 'gyu' }, { h: 'ぎょ', k: 'ギョ', r: 'gyo' }
-            ]},
-            { rowHeader: 'j', chars: [
-                { h: 'じゃ', k: 'ジャ', r: 'ja' }, { h: 'じゅ', k: 'ジュ', r: 'ju' }, { h: 'じょ', k: 'ジョ', r: 'jo' }
-            ]},
-            { rowHeader: 'b', chars: [
-                { h: 'びゃ', k: 'ビャ', r: 'bya' }, { h: 'びゅ', k: 'ビュ', r: 'byu' }, { h: 'びょ', k: 'ビョ', r: 'byo' }
-            ]},
-            { rowHeader: 'p', chars: [
-                { h: 'ぴゃ', k: 'ピャ', r: 'pya' }, { h: 'ぴゅ', k: 'ピュ', r: 'pyu' }, { h: 'ぴょ', k: 'ピョ', r: 'pyo' }
-            ]}
+            { rowHeader: 'k', chars: [{ h: 'きゃ', k: 'キャ', r: 'kya' }, { h: 'きゅ', k: 'キュ', r: 'kyu' }, { h: 'きょ', k: 'キョ', r: 'kyo' }] },
+            { rowHeader: 's', chars: [{ h: 'しゃ', k: 'シャ', r: 'sha' }, { h: 'しゅ', k: 'シュ', r: 'shu' }, { h: 'しょ', k: 'ショ', r: 'sho' }] },
+            { rowHeader: 't', chars: [{ h: 'ちゃ', k: 'チャ', r: 'cha' }, { h: 'ちゅ', k: 'チュ', r: 'chu' }, { h: 'ちょ', k: 'チョ', r: 'cho' }] },
+            { rowHeader: 'n', chars: [{ h: 'にゃ', k: 'ニャ', r: 'nya' }, { h: 'にゅ', k: 'ニュ', r: 'nyu' }, { h: 'にょ', k: 'ニョ', r: 'nyo' }] },
+            { rowHeader: 'h', chars: [{ h: 'ひゃ', k: 'ヒャ', r: 'hya' }, { h: 'ひゅ', k: 'ヒュ', r: 'hyu' }, { h: 'ひょ', k: 'ヒョ', r: 'hyo' }] },
+            { rowHeader: 'm', chars: [{ h: 'みゃ', k: 'ミャ', r: 'mya' }, { h: 'みゅ', k: 'ミュ', r: 'myu' }, { h: 'みょ', k: 'ミョ', r: 'myo' }] },
+            { rowHeader: 'r', chars: [{ h: 'りゃ', k: 'リャ', r: 'rya' }, { h: 'りゅ', k: 'リュ', r: 'ryu' }, { h: 'りょ', k: 'リョ', r: 'ryo' }] },
+            { rowHeader: 'g', chars: [{ h: 'ぎゃ', k: 'ギャ', r: 'gya' }, { h: 'ぎゅ', k: 'ギュ', r: 'gyu' }, { h: 'ぎょ', k: 'ギョ', r: 'gyo' }] },
+            { rowHeader: 'j', chars: [{ h: 'じゃ', k: 'ジャ', r: 'ja' }, { h: 'じゅ', k: 'ジュ', r: 'ju' }, { h: 'じょ', k: 'ジョ', r: 'jo' }] },
+            { rowHeader: 'b', chars: [{ h: 'びゃ', k: 'ビャ', r: 'bya' }, { h: 'びゅ', k: 'ビュ', r: 'byu' }, { h: 'びょ', k: 'ビョ', r: 'byo' }] },
+            { rowHeader: 'p', chars: [{ h: 'ぴゃ', k: 'ピャ', r: 'pya' }, { h: 'ぴゅ', k: 'ピュ', r: 'pyu' }, { h: 'ぴょ', k: 'ピョ', r: 'pyo' }] }
         ];
 
         // 全假名覆盖词汇记忆数据
@@ -319,15 +274,15 @@
         ];
 
         document.addEventListener("DOMContentLoaded", () => {
-            // 封装一个渲染表格的函数
+            // 封装渲染假名表格的函数
             function renderTable(headId, bodyId, headerVowels, data) {
                 const tableHead = document.getElementById(headId);
                 const tableBody = document.getElementById(bodyId);
 
                 // 生成表头 (Thead)
-                let theadHtml = '<tr><th class="w-8 sm:w-12"></th>';
+                let theadHtml = '<tr><th class="w-6 sm:w-8"></th>';
                 headerVowels.forEach(v => {
-                    theadHtml += `<th class="p-2 text-center text-slate-400 font-mono text-lg sm:text-xl font-medium">${v}</th>`;
+                    theadHtml += `<th class="p-1 text-center text-slate-400 font-mono text-xs sm:text-sm font-medium">${v}</th>`;
                 });
                 theadHtml += '</tr>';
                 tableHead.innerHTML = theadHtml;
@@ -336,53 +291,46 @@
                 let tbodyHtml = '';
                 data.forEach(rowData => {
                     tbodyHtml += `<tr>`;
-
                     // 行侧边表头
-                    tbodyHtml += `<th class="p-2 text-center text-slate-400 font-mono text-lg sm:text-xl font-medium align-middle">${rowData.rowHeader}</th>`;
+                    tbodyHtml += `<th class="p-1 text-center text-slate-400 font-mono text-xs sm:text-sm font-medium align-middle">${rowData.rowHeader}</th>`;
 
                     // 生成单元格
                     rowData.chars.forEach(charData => {
                         if (charData) {
                             tbodyHtml += `
                                 <td class="h-full">
-                                    <div class="bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md hover:border-indigo-300 hover:-translate-y-0.5 transition-all duration-200 p-2 sm:p-4 flex flex-col items-center justify-center min-w-[70px] sm:min-w-[90px] cursor-default h-full">
-                                        <div class="flex w-full justify-center gap-2 sm:gap-4 mb-2 sm:mb-3">
-                                            <span class="text-xl sm:text-3xl font-medium text-blue-600 font-japanese">${charData.h}</span>
-                                            <span class="text-xl sm:text-3xl font-medium text-red-600 font-japanese">${charData.k}</span>
+                                    <div class="bg-white border border-slate-200 rounded-md shadow-sm hover:border-indigo-300 transition-colors p-1.5 flex flex-col items-center justify-center min-w-[50px] sm:min-w-[60px] h-full">
+                                        <div class="flex w-full justify-center gap-1.5 mb-0.5">
+                                            <span class="text-base sm:text-xl font-medium text-blue-600 font-japanese">${charData.h}</span>
+                                            <span class="text-base sm:text-xl font-medium text-red-600 font-japanese">${charData.k}</span>
                                         </div>
-                                        <div class="text-xs sm:text-sm text-slate-500 font-mono tracking-widest bg-slate-50 px-2 py-0.5 rounded">${charData.r}</div>
+                                        <div class="text-[9px] sm:text-[10px] text-slate-500 font-mono tracking-widest bg-slate-50 px-1 py-0 rounded">${charData.r}</div>
                                     </div>
                                 </td>
                             `;
                         } else {
-                            // 空白单元格
                             tbodyHtml += `<td class="empty-cell"></td>`;
                         }
                     });
-
                     tbodyHtml += `</tr>`;
                 });
                 tableBody.innerHTML = tbodyHtml;
             }
 
-            // 渲染清音 (五十音)
+            // 执行渲染假名表
             renderTable('table-head', 'table-body', vowels, gojuonData);
-
-            // 渲染浊音・半浊音
             renderTable('dakuon-table-head', 'dakuon-table-body', vowels, dakuonData);
-
-            // 渲染拗音
             renderTable('yoon-table-head', 'yoon-table-body', yoonVowels, yoonData);
 
-            // 渲染全新的词汇记忆表格 (通用函数)
+            // 封装渲染词汇记忆表格的函数
             function renderVocabTable(headId, bodyId, headerVowels, data) {
                 const head = document.getElementById(headId);
                 const body = document.getElementById(bodyId);
 
                 // 表头
-                let theadHtml = '<tr><th class="w-8 sm:w-12"></th>';
+                let theadHtml = '<tr><th class="w-6 sm:w-8"></th>';
                 headerVowels.forEach(v => {
-                    theadHtml += `<th class="p-2 text-center text-slate-400 font-mono text-lg sm:text-xl font-medium">${v}</th>`;
+                    theadHtml += `<th class="p-1 text-center text-slate-400 font-mono text-xs sm:text-sm font-medium">${v}</th>`;
                 });
                 theadHtml += '</tr>';
                 head.innerHTML = theadHtml;
@@ -391,11 +339,10 @@
                 let tbodyHtml = '';
                 data.forEach(rowData => {
                     tbodyHtml += `<tr>`;
-                    tbodyHtml += `<th class="p-2 text-center text-slate-400 font-mono text-lg sm:text-xl font-medium align-middle">${rowData.rowHeader}</th>`;
+                    tbodyHtml += `<th class="p-1 text-center text-slate-400 font-mono text-xs sm:text-sm font-medium align-middle">${rowData.rowHeader}</th>`;
 
                     rowData.words.forEach(wordData => {
                         if (wordData) {
-                            // 高亮假名和对应的罗马音
                             const highlightedW = wordData.w.split(wordData.k).join(`<span class="text-green-600 font-bold">${wordData.k}</span>`);
                             const highlightedR = wordData.r.split(' ').map(s =>
                                 s === wordData.tr ? `<span class="text-green-600 font-bold">${s}</span>` : s
@@ -403,16 +350,16 @@
 
                             tbodyHtml += `
                                 <td class="h-full">
-                                    <div class="bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md hover:border-green-300 hover:-translate-y-0.5 transition-all duration-200 p-2 sm:p-3 flex flex-col items-center justify-between min-w-[90px] sm:min-w-[120px] cursor-default h-full relative">
-                                        <span class="absolute top-2 left-2 text-[10px] sm:text-xs font-bold text-green-600 bg-green-50 px-1.5 py-0.5 rounded">${wordData.k}</span>
+                                    <div class="bg-white border border-slate-200 rounded-md shadow-sm hover:border-green-300 transition-colors p-1.5 sm:p-2 flex flex-col items-center justify-between min-w-[80px] sm:min-w-[95px] h-full relative">
+                                        <span class="absolute top-1 left-1 text-[8px] font-bold text-green-600 bg-green-50 px-1 py-0 rounded">${wordData.k}</span>
 
-                                        <div class="flex flex-col items-center mt-3 mb-2">
-                                            <div class="text-[10px] sm:text-xs text-slate-400 font-mono tracking-widest mb-0.5">${highlightedR}</div>
-                                            <div class="text-lg sm:text-xl font-medium text-slate-800 font-japanese mb-1">${highlightedW}</div>
-                                            <div class="text-xs text-slate-500 text-center leading-tight whitespace-nowrap">${wordData.m}</div>
+                                        <div class="flex flex-col items-center mt-2 mb-1 w-full">
+                                            <div class="text-[8px] text-slate-400 font-mono tracking-tighter mb-0.5 line-clamp-1 w-full text-center">${highlightedR}</div>
+                                            <div class="text-sm sm:text-base font-medium text-slate-800 font-japanese mb-0.5 whitespace-nowrap">${highlightedW}</div>
+                                            <div class="text-[9px] sm:text-[10px] text-slate-500 text-center leading-tight whitespace-nowrap">${wordData.m}</div>
                                         </div>
 
-                                        <div class="text-xs sm:text-sm text-slate-500 font-mono tracking-widest bg-slate-50 px-2 py-0.5 rounded border border-slate-100 mt-auto">${wordData.tr}</div>
+                                        <div class="text-[8px] sm:text-[9px] text-slate-500 font-mono bg-slate-50 px-1 py-0 rounded border border-slate-100 mt-auto">${wordData.tr}</div>
                                     </div>
                                 </td>
                             `;
@@ -425,11 +372,12 @@
                 body.innerHTML = tbodyHtml;
             }
 
-            // 执行渲染
+            // 执行渲染词汇表
             renderVocabTable('vocab-table-head', 'vocab-table-body', vowels, allKanaVocabData);
             renderVocabTable('dakuon-vocab-table-head', 'dakuon-vocab-table-body', vowels, dakuonVocabData);
             renderVocabTable('yoon-vocab-table-head', 'yoon-vocab-table-body', yoonVowels, yoonVocabData);
         });
     </script>
 </body>
+
 </html>
