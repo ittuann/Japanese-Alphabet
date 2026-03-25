@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>日语五十音图 - Gojūon Table</title>
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- Google Fonts: Noto Sans JP -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -183,10 +183,10 @@
         // 全假名覆盖词汇记忆数据
         const allKanaVocabData = [
             { rowHeader: '', words: [
-                { k: 'あ', w: 'あさ', r: 'a sa', m: '朝 (早上)', tr: 'a' }, { k: 'い', w: 'いぬ', r: 'i nu', m: '犬 (狗)', tr: 'i' }, { k: 'う', w: 'うみ', r: 'u mi', m: '海 (海)', tr: 'u' }, { k: 'え', w: 'えき', r: 'e ki', m: '駅 (车站)', tr: 'e' }, { k: 'お', w: 'おにぎり', r: 'o ni gi ri', m: 'おにぎり (饭团)', tr: 'o' }
+                { k: 'あ', w: 'あさ', r: 'a sa', m: '朝 (早上)', tr: 'a' }, { k: 'い', w: 'いぬ', r: 'i nu', m: '犬 (狗)', tr: 'i' }, { k: 'う', w: 'うみ', r: 'u mi', m: '海 (海)', tr: 'u' }, { k: 'え', w: 'えき', r: 'e ki', m: '駅 (车站)', tr: 'e' }, { k: 'お', w: 'おもしろい', r: 'o mo shi ro i', m: '面白い (有趣)', tr: 'o' }
             ]},
             { rowHeader: 'k', words: [
-                { k: 'か', w: 'かさ', r: 'ka sa', m: '傘 (伞)', tr: 'ka' }, { k: 'き', w: 'きのこ', r: 'ki no ko', m: 'きのこ (蘑菇)', tr: 'ki' }, { k: 'く', w: 'くつ', r: 'ku tsu', m: '靴 (鞋子)', tr: 'ku' }, { k: 'け', w: 'けいさつ', r: 'ke i sa tsu', m: '警察 (警察)', tr: 'ke' }, { k: 'こ', w: 'こども', r: 'ko do mo', m: '子供 (孩子)', tr: 'ko' }
+                { k: 'か', w: 'かさ', r: 'ka sa', m: '傘 (伞)', tr: 'ka' }, { k: 'き', w: 'きもの', r: 'ki mo no', m: '着物 (和服)', tr: 'ki' }, { k: 'く', w: 'くるしい', r: 'ku ru shi i', m: '苦しい (难受)', tr: 'ku' }, { k: 'け', w: 'けち', r: 'ke chi', m: 'けち (小气)', tr: 'ke' }, { k: 'こ', w: 'こども', r: 'ko do mo', m: '子供 (孩子)', tr: 'ko' }
             ]},
             { rowHeader: 's', words: [
                 { k: 'さ', w: 'さくら', r: 'sa ku ra', m: '桜 (樱花)', tr: 'sa' }, { k: 'し', w: 'しお', r: 'shi o', m: '塩 (盐)', tr: 'shi' }, { k: 'す', w: 'すごい', r: 'su go i', m: '凄い (厉害)', tr: 'su' }, { k: 'せ', w: 'せんせい', r: 'se n se i', m: '先生 (老师)', tr: 'se' }, { k: 'そ', w: 'そら', r: 'so ra', m: '空 (天空)', tr: 'so' }
@@ -195,7 +195,7 @@
                 { k: 'た', w: 'たべる', r: 'ta be ru', m: '食べる (吃)', tr: 'ta' }, { k: 'ち', w: 'ちび', r: 'chi bi', m: 'ちび (小不点)', tr: 'chi' }, { k: 'つ', w: 'つき', r: 'tsu ki', m: '月 (月亮)', tr: 'tsu' }, { k: 'て', w: 'てがみ', r: 'te ga mi', m: '手紙 (信)', tr: 'te' }, { k: 'と', w: 'とけい', r: 'to ke i', m: '時計 (钟表)', tr: 'to' }
             ]},
             { rowHeader: 'n', words: [
-                { k: 'な', w: 'なまえ', r: 'na ma e', m: '名前 (名字)', tr: 'na' }, { k: 'に', w: 'にく', r: 'ni ku', m: '肉 (肉)', tr: 'ni' }, { k: 'ぬ', w: 'ぬの', r: 'nu no', m: '布 (布)', tr: 'nu' }, { k: 'ね', w: 'ねこ', r: 'ne ko', m: '猫 (猫)', tr: 'ne' }, { k: 'の', w: 'のむ', r: 'no mu', m: '飲む (喝)', tr: 'no' }
+                { k: 'な', w: 'なまえ', r: 'na ma e', m: '名前 (名字)', tr: 'na' }, { k: 'に', w: 'にく', r: 'ni ku', m: '肉 (肉)', tr: 'ni' }, { k: 'ぬ', w: 'ぬすまれた', r: 'nu su ma re ta', m: '盗まれた (被盗)', tr: 'nu' }, { k: 'ね', w: 'ねこ', r: 'ne ko', m: '猫 (猫)', tr: 'ne' }, { k: 'の', w: 'のむ', r: 'no mu', m: '飲む (喝)', tr: 'no' }
             ]},
             { rowHeader: 'h', words: [
                 { k: 'は', w: 'はな', r: 'ha na', m: '花 (花)', tr: 'ha' }, { k: 'ひ', w: 'ひかり', r: 'hi ka ri', m: '光 (光)', tr: 'hi' }, { k: 'ふ', w: 'ふね', r: 'fu ne', m: '船 (船)', tr: 'fu' }, { k: 'へ', w: 'へや', r: 'he ya', m: '部屋 (房间)', tr: 'he' }, { k: 'ほ', w: 'ほし', r: 'ho shi', m: '星 (星星)', tr: 'ho' }
@@ -207,7 +207,7 @@
                 { k: 'や', w: 'やま', r: 'ya ma', m: '山 (山)', tr: 'ya' }, null, { k: 'ゆ', w: 'ゆめ', r: 'yu me', m: '夢 (梦)', tr: 'yu' }, null, { k: 'よ', w: 'よる', r: 'yo ru', m: '夜 (夜晚)', tr: 'yo' }
             ]},
             { rowHeader: 'r', words: [
-                { k: 'ら', w: 'らいおん', r: 'ra i o n', m: 'ライオン (狮子)', tr: 'ra' }, { k: 'り', w: 'りんご', r: 'ri n go', m: '林檎 (苹果)', tr: 'ri' }, { k: 'る', w: 'くるま', r: 'ku ru ma', m: '車 (汽车)', tr: 'ru' }, { k: 'れ', w: 'れもん', r: 're mo n', m: 'レモン (柠檬)', tr: 're' }, { k: 'ろ', w: 'ろく', r: 'ro ku', m: '六 (数字六)', tr: 'ro' }
+                { k: 'ら', w: 'からだ', r: 'ka ra da', m: '体 (身体)', tr: 'ra' }, { k: 'り', w: 'りんご', r: 'ri n go', m: '林檎 (苹果)', tr: 'ri' }, { k: 'る', w: 'くるま', r: 'ku ru ma', m: '車 (汽车)', tr: 'ru' }, { k: 'れ', w: 'れきし', r: 're ki shi', m: '歴史 (历史)', tr: 're' }, { k: 'ろ', w: 'しろ', r: 'shi ro', m: '城 (城堡)', tr: 'ro' }
             ]},
             { rowHeader: 'w', words: [
                 { k: 'わ', w: 'わたし', r: 'wa ta shi', m: '私 (我)', tr: 'wa' }, null, null, null, { k: 'を', w: 'ほんをよむ', r: 'ho n wo yo mu', m: '本を読む (读书)', tr: 'wo' }
@@ -220,56 +220,78 @@
         // 浊音・半浊音词汇记忆数据
         const dakuonVocabData = [
             { rowHeader: 'g', words: [
-                { k: 'が', w: 'がっこう', r: 'ga k ko u', m: '学校 (学校)', tr: 'ga' }, { k: 'ぎ', w: 'ぎんこう', r: 'gi n ko u', m: '銀行 (银行)', tr: 'gi' }, { k: 'ぐ', w: 'ぐあい', r: 'gu a i', m: '具合 (状况)', tr: 'gu' }, { k: 'げ', w: 'げんき', r: 'ge n ki', m: '元気 (精神)', tr: 'ge' }, { k: 'ご', w: 'ごはん', r: 'go ha n', m: 'ご飯 (米饭)', tr: 'go' }
+                { k: 'が', w: 'がっこう', r: 'ga k ko u', m: '学校 (学校)', tr: 'ga' }, { k: 'ぎ', w: 'かぎ', r: 'ka gi', m: '鍵 (钥匙)', tr: 'gi' }, { k: 'ぐ', w: 'ぐあい', r: 'gu a i', m: '具合 (状况)', tr: 'gu' }, { k: 'げ', w: 'げんき', r: 'ge n ki', m: '元気 (精神)', tr: 'ge' }, { k: 'ご', w: 'ごはん', r: 'go ha n', m: 'ご飯 (米饭)', tr: 'go' }
             ]},
             { rowHeader: 'z', words: [
-                { k: 'ざ', w: 'ざっし', r: 'za s shi', m: '雑誌 (杂志)', tr: 'za' }, { k: 'じ', w: 'じかん', r: 'ji ka n', m: '時間 (时间)', tr: 'ji' }, { k: 'ず', w: 'ずっと', r: 'zu t to', m: 'ずっと (一直)', tr: 'zu' }, { k: 'ぜ', w: 'ぜんぶ', r: 'ze n bu', m: '全部 (全部)', tr: 'ze' }, { k: 'ぞ', w: 'ぞう', r: 'zo u', m: '象 (大象)', tr: 'zo' }
+                { k: 'ざ', w: 'ざんねん', r: 'za n ne n', m: '残念 (遗憾)', tr: 'za' }, { k: 'じ', w: 'じかん', r: 'ji ka n', m: '時間 (时间)', tr: 'ji' }, { k: 'ず', w: 'ずっと', r: 'zu t to', m: 'ずっと (一直)', tr: 'zu' }, { k: 'ぜ', w: 'ぜんぶ', r: 'ze n bu', m: '全部 (全部)', tr: 'ze' }, { k: 'ぞ', w: 'かぞく', r: 'ka zo ku', m: '家族 (家庭)', tr: 'zo' }
             ]},
             { rowHeader: 'd', words: [
-                { k: 'だ', w: 'だいがく', r: 'da i ga ku', m: '大学 (大学)', tr: 'da' }, { k: 'ぢ', w: 'ちぢむ', r: 'chi ji mu', m: '縮む (缩小)', tr: 'ji' }, { k: 'づ', w: 'つづく', r: 'tsu zu ku', m: '続く (继续)', tr: 'zu' }, { k: 'で', w: 'でんわ', r: 'de n wa', m: '電話 (电话)', tr: 'de' }, { k: 'ど', w: 'どうぶつ', r: 'do u bu tsu', m: '動物 (动物)', tr: 'do' }
+                { k: 'だ', w: 'だめ', r: 'da me', m: 'だめ (不行)', tr: 'da' }, { k: 'ぢ', w: 'まぢか', r: 'ma ji ka', m: '間近 (近)', tr: 'ji' }, { k: 'づ', w: 'つづく', r: 'tsu zu ku', m: '続く (继续)', tr: 'zu' }, { k: 'で', w: 'でんわ', r: 'de n wa', m: '電話 (电话)', tr: 'de' }, { k: 'ど', w: 'まど', r: 'ma do', m: '窓 (窗户)', tr: 'do' }
             ]},
             { rowHeader: 'b', words: [
-                { k: 'ば', w: 'ばか', r: 'ba ka', m: '馬鹿 (笨蛋)', tr: 'ba' }, { k: 'び', w: 'びじゅつ', r: 'bi ju tsu', m: '美術 (美术)', tr: 'bi' }, { k: 'ぶ', w: 'ぶた', r: 'bu ta', m: '豚 (猪)', tr: 'bu' }, { k: 'べ', w: 'べんきょう', r: 'be n kyo u', m: '勉強 (学习)', tr: 'be' }, { k: 'ぼ', w: 'ぼうし', r: 'bo u shi', m: '帽子 (帽子)', tr: 'bo' }
+                { k: 'ば', w: 'ばか', r: 'ba ka', m: '馬鹿 (笨蛋)', tr: 'ba' }, { k: 'び', w: 'びじゅつ', r: 'bi ju tsu', m: '美術 (美术)', tr: 'bi' }, { k: 'ぶ', w: 'ぶた', r: 'bu ta', m: '豚 (猪)', tr: 'bu' }, { k: 'べ', w: 'べんきょう', r: 'be n kyo u', m: '勉強 (学习)', tr: 'be' }, { k: 'ぼ', w: 'ぼろぼろ', r: 'bo ro bo ro', m: '(破破烂烂)', tr: 'bo' }
             ]},
             { rowHeader: 'p', words: [
-                { k: 'ぱ', w: 'ぱん', r: 'pa n', m: 'パン (面包)', tr: 'pa' }, { k: 'ぴ', w: 'ぴかぴか', r: 'pi ka pi ka', m: 'ぴかぴか (闪亮)', tr: 'pi' }, { k: 'ぷ', w: 'ぷれぜんと', r: 'pu re ze n to', m: 'プレゼント (礼物)', tr: 'pu' }, { k: 'ぺ', w: 'ぺん', r: 'pe n', m: 'ペン (笔)', tr: 'pe' }, { k: 'ぽ', w: 'ぽけっと', r: 'po ke t to', m: 'ポケット (口袋)', tr: 'po' }
+                { k: 'ぱ', w: 'いっぱい', r: 'i pa i', m: '一杯 (满)', tr: 'pa' }, { k: 'ぴ', w: 'ぴかぴか', r: 'pi ka pi ka', m: 'ぴかぴか (闪亮)', tr: 'pi' }, { k: 'ぷ', w: 'てんぷら', r: 'te n pu ra', m: '天ぷら (天妇罗)', tr: 'pu' }, { k: 'ぺ', w: 'ぺこぺこ', r: 'pe ko pe ko', m: 'ぺこぺこ (饿)', tr: 'pe' }, { k: 'ぽ', w: 'しっぽ', r: 'shi po', m: '尻尾 (尾巴)', tr: 'po' }
             ]}
         ];
 
         // 拗音词汇记忆数据
         const yoonVocabData = [
             { rowHeader: 'k', words: [
-                { k: 'きゃ', w: 'きゃく', r: 'kya ku', m: '客 (客人)', tr: 'kya' }, { k: 'きゅ', w: 'きゅうり', r: 'kyu u ri', m: '胡瓜 (黄瓜)', tr: 'kyu' }, { k: 'きょ', w: 'きょう', r: 'kyo u', m: '今日 (今天)', tr: 'kyo' }
+                { k: 'きゃ', w: 'きゃく', r: 'kya ku', m: '客 (客人)', tr: 'kya' },
+                { k: 'きゅ', w: 'きゅうじつ', r: 'kyu u ji tsu', m: '休日 (休息日)', tr: 'kyu' },
+                { k: 'きょ', w: 'きょう', r: 'kyo u', m: '今日 (今天)', tr: 'kyo' }
             ]},
             { rowHeader: 's', words: [
-                { k: 'しゃ', w: 'しゃしん', r: 'sha shi n', m: '写真 (照片)', tr: 'sha' }, { k: 'しゅ', w: 'しゅくだい', r: 'shu ku da i', m: '宿題 (作业)', tr: 'shu' }, { k: 'しょ', w: 'しょくどう', r: 'sho ku do u', m: '食堂 (食堂)', tr: 'sho' }
+                { k: 'しゃ', w: 'しゃしん', r: 'sha shi n', m: '写真 (照片)', tr: 'sha' },
+                { k: 'しゅ', w: 'しゅうまつ', r: 'shu u ma tsu', m: '週末 (周末)', tr: 'shu' },
+                { k: 'しょ', w: 'じしょ', r: 'ji sho', m: '辞書 (字典)', tr: 'sho' }
             ]},
             { rowHeader: 't', words: [
-                { k: 'ちゃ', w: 'おちゃ', r: 'o cha', m: 'お茶 (茶)', tr: 'cha' }, { k: 'ちゅ', w: 'ちゅうごく', r: 'chu u go ku', m: '中国 (中国)', tr: 'chu' }, { k: 'ちょ', w: 'ちょきん', r: 'cho ki n', m: '貯金 (存钱)', tr: 'cho' }
+                { k: 'ちゃ', w: 'おちゃ', r: 'o cha', m: 'お茶 (茶)', tr: 'cha' },
+                { k: 'ちゅ', w: 'ちゅうごく', r: 'chu u go ku', m: '中国 (中国)', tr: 'chu' },
+                { k: 'ちょ', w: 'ちょきん', r: 'cho ki n', m: '貯金 (存钱)', tr: 'cho' }
             ]},
             { rowHeader: 'n', words: [
-                { k: 'にゃ', w: 'にゃんこ', r: 'nya n ko', m: 'にゃんこ (猫咪)', tr: 'nya' }, { k: 'にゅ', w: 'ぎゅうにゅう', r: 'gyu u nyu u', m: '牛乳 (牛奶)', tr: 'nyu' }, { k: 'にょ', w: 'にょろにょろ', r: 'nyo ro nyo ro', m: 'にょろにょろ (弯曲貌)', tr: 'nyo' }
+                { k: 'にゃ', w: 'にゃんこ', r: 'nya n ko', m: 'にゃんこ (猫咪)', tr: 'nya' },
+                { k: 'にゅ', w: 'ぎゅうにゅう', r: 'gyu u nyu u', m: '牛乳 (牛奶)', tr: 'nyu' },
+                { k: 'にょ', w: 'にょうぼう', r: 'nyo u bo u', m: '女房 (妻子)', tr: 'nyo' }
             ]},
             { rowHeader: 'h', words: [
-                { k: 'ひゃ', w: 'ひゃく', r: 'hya ku', m: '百 (一百)', tr: 'hya' }, { k: 'ひゅ', w: 'ひゅーひゅー', r: 'hyu u hyu u', m: 'ひゅーひゅー (呼呼声)', tr: 'hyu' }, { k: 'ひょ', w: 'ひょう', r: 'hyo u', m: '豹 (豹)', tr: 'hyo' }
+                { k: 'ひゃ', w: 'ひゃく', r: 'hya ku', m: '百 (一百)', tr: 'hya' },
+                { k: 'ひゅ', w: 'ひゅうひゅう', r: 'hyu u hyu u', m: 'ひゅうひゅう (呼呼声)', tr: 'hyu' },
+                { k: 'ひょ', w: 'ひょうか', r: 'hyo u ka', m: '評価 (评价)', tr: 'hyo' }
             ]},
             { rowHeader: 'm', words: [
-                { k: 'みゃ', w: 'みゃく', r: 'mya ku', m: '脈 (脉搏)', tr: 'mya' }, { k: 'みゅ', w: 'みゅーじっく', r: 'myu u ji k ku', m: 'ミュージック (音乐)', tr: 'myu' }, { k: 'みょ', w: 'みょうじ', r: 'myo u ji', m: '名字 (姓氏)', tr: 'myo' }
+                { k: 'みゃ', w: 'さんみゃく', r: 'sa n mya ku', m: '山脈 (山脉)', tr: 'mya' },
+                { k: 'みゅ', w: 'みゅーじっく', r: 'myu u ji k ku', m: 'ミュージック (音乐)', tr: 'myu' },
+                { k: 'みょ', w: 'みょうじ', r: 'myo u ji', m: '名字 (姓氏)', tr: 'myo' }
             ]},
             { rowHeader: 'r', words: [
-                { k: 'りゃ', w: 'りゃく', r: 'rya ku', m: '略 (省略)', tr: 'rya' }, { k: 'りゅ', w: 'りゅう', r: 'ryu u', m: '竜 (龙)', tr: 'ryu' }, { k: 'りょ', w: 'りょこう', r: 'ryo ko u', m: '旅行 (旅行)', tr: 'ryo' }
+                { k: 'りゃ', w: 'しんりゃく', r: 'shi n rya ku', m: '侵略 (侵略)', tr: 'rya' },
+                { k: 'りゅ', w: 'りゅうがく', r: 'ryu u ga ku', m: '留学 (留学)', tr: 'ryu' },
+                { k: 'りょ', w: 'りょうり', r: 'ryo u ri', m: '料理 (料理)', tr: 'ryo' }
             ]},
             { rowHeader: 'g', words: [
-                { k: 'ぎゃ', w: 'ぎゃく', r: 'gya ku', m: '逆 (相反)', tr: 'gya' }, { k: 'ぎゅ', w: 'ぎゅうにく', r: 'gyu u ni ku', m: '牛肉 (牛肉)', tr: 'gyu' }, { k: 'ぎょ', w: 'きんぎょ', r: 'ki n gyo', m: '金魚 (金鱼)', tr: 'gyo' }
+                { k: 'ぎゃ', w: 'ぎゃく', r: 'gya ku', m: '逆 (相反)', tr: 'gya' },
+                { k: 'ぎゅ', w: 'ぎゅうどん', r: 'gyu u do n', m: '牛丼 (牛肉盖饭)', tr: 'gyu' },
+                { k: 'ぎょ', w: 'きんぎょ', r: 'ki n gyo', m: '金魚 (金鱼)', tr: 'gyo' }
             ]},
             { rowHeader: 'j', words: [
-                { k: 'じゃ', w: 'じゃま', r: 'ja ma', m: '邪魔 (打扰)', tr: 'ja' }, { k: 'じゅ', w: 'じゅぎょう', r: 'ju gyo u', m: '授業 (课)', tr: 'ju' }, { k: 'じょ', w: 'じょせい', r: 'jo se i', m: '女性 (女性)', tr: 'jo' }
+                { k: 'じゃ', w: 'じゃま', r: 'ja ma', m: '邪魔 (打扰)', tr: 'ja' },
+                { k: 'じゅ', w: 'じゅぎょう', r: 'ju gyo u', m: '授業 (课)', tr: 'ju' },
+                { k: 'じょ', w: 'じょせい', r: 'jo se i', m: '女性 (女性)', tr: 'jo' }
             ]},
             { rowHeader: 'b', words: [
-                { k: 'びゃ', w: 'さんびゃく', r: 'sa n bya ku', m: '三百 (三百)', tr: 'bya' }, { k: 'びゅ', w: 'びゅんびゅん', r: 'byu n byu n', m: 'びゅんびゅん (嗖嗖声)', tr: 'byu' }, { k: 'びょ', w: 'びょういん', r: 'byo u i n', m: '病院 (医院)', tr: 'byo' }
+                { k: 'びゃ', w: 'さんびゃく', r: 'sa n bya ku', m: '三百 (三百)', tr: 'bya' },
+                { k: 'びゅ', w: 'びゅんびゅん', r: 'byu n byu n', m: 'びゅんびゅん (嗖嗖声)', tr: 'byu' },
+                { k: 'びょ', w: 'びょういん', r: 'byo u i n', m: '病院 (医院)', tr: 'byo' }
             ]},
             { rowHeader: 'p', words: [
-                { k: 'ぴゃ', w: 'ろっぴゃく', r: 'ro p pya ku', m: '六百 (六百)', tr: 'pya' }, { k: 'ぴゅ', w: 'こんぴゅーた', r: 'ko n pyu u ta', m: 'コンピュータ (电脑)', tr: 'pyu' }, { k: 'ぴょ', w: 'はっぴょう', r: 'ha p pyo u', m: '発表 (发表)', tr: 'pyo' }
+                { k: 'ぴゃ', w: 'はっぴゃく', r: 'ha p pya ku', m: '八百 (八百)', tr: 'pya' },
+                { k: 'ぴゅ', w: 'こんぴゅーた', r: 'ko n pyu u ta', m: 'コンピュータ (电脑)', tr: 'pyu' },
+                { k: 'ぴょ', w: 'はっぴょう', r: 'ha p pyo u', m: '発表 (发表)', tr: 'pyo' }
             ]}
         ];
 
