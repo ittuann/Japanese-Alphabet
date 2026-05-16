@@ -16,9 +16,8 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['"Inter"', 'sans-serif'],
-                        japanese: ['"Noto Sans JP"', 'sans-serif'],
-                        mono: ['"Fira Code"', '"Courier New"', 'monospace']
+                        japanese: ['"Noto Sans JP"', '"Noto Sans"', 'sans-serif'],
+                        mono: ['"Noto Sans Mono"', 'monospace']
                     }
                 }
             }
@@ -319,7 +318,7 @@
                     // 生成单元格
                     rowData.chars.forEach(charData => {
                         if (charData) {
-                            const isSpecial = ['shi', 'chi', 'tsu', 'fu', 'ji', 'zu'].includes(charData.r);
+                            const isSpecial = ['shi', 'chi', 'tsu', 'fu', 'ji'].includes(charData.r) || (charData.r === 'zu' && charData.h === 'づ');
 
                             tbodyHtml += `
                                 <td class="h-full">
@@ -374,7 +373,7 @@
                                 s === wordData.tr ? `<span class="text-green-600 font-bold">${s}</span>` : s
                             ).join(' ');
 
-                            const isSpecialTr = ['shi', 'chi', 'tsu', 'fu', 'ji', 'zu'].includes(wordData.tr);
+                            const isSpecialTr = ['shi', 'chi', 'tsu', 'fu', 'ji'].includes(wordData.tr) || (wordData.tr === 'zu' && wordData.k === 'づ');
 
                             tbodyHtml += `
                                 <td class="h-full">
